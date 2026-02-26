@@ -6,7 +6,6 @@ import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import LoadingState from '@/components/common/LoadingState';
 import ErrorState from '@/components/common/ErrorState';
-import SdgChip from '@/components/vallox/SdgChip';
 import OpportunitySummaryCard from '@/components/vallox/OpportunitySummaryCard';
 import StatCard from '@/components/panels/StatCard';
 import { useAppAuth } from '@/lib/useAppAuth';
@@ -24,10 +23,9 @@ function profileCompletion(profile: StudentProfile | null, projectsCount: number
     profile.headline.trim().length > 3,
     profile.bio.trim().length > 20,
     profile.skills.length > 0,
-    profile.sdgInterests.length > 0,
     projectsCount > 0
   ].filter(Boolean).length;
-  return Math.round((score / 5) * 100);
+  return Math.round((score / 4) * 100);
 }
 
 export default function StudentDashboardPage() {
@@ -136,11 +134,6 @@ export default function StudentDashboardPage() {
                 <span key={skill} className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-700">
                   {skill}
                 </span>
-              ))}
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {profile.sdgInterests.map((sdg) => (
-                <SdgChip key={`sdg-${sdg}`} sdg={sdg} />
               ))}
             </div>
           </>

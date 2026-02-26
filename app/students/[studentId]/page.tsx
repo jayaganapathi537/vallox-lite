@@ -6,7 +6,6 @@ import { useParams } from 'next/navigation';
 import Card from '@/components/ui/Card';
 import LoadingState from '@/components/common/LoadingState';
 import ErrorState from '@/components/common/ErrorState';
-import SdgChip from '@/components/vallox/SdgChip';
 import type { BaseUser, Project, StudentProfile } from '@/models/vallox';
 import { getProjectsByStudentId } from '@/services/vallox/projectService';
 import { getStudentProfile } from '@/services/vallox/studentService';
@@ -80,15 +79,6 @@ export default function StudentPublicProfilePage() {
             ))}
           </div>
         </div>
-
-        <div>
-          <p className="text-sm font-semibold text-ink-700">SDG Interests</p>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {profile.sdgInterests.map((sdg) => (
-              <SdgChip key={`profile-${sdg}`} sdg={sdg} />
-            ))}
-          </div>
-        </div>
       </Card>
 
       <section className="space-y-3">
@@ -109,12 +99,6 @@ export default function StudentPublicProfilePage() {
                     <span key={tech} className="rounded-full bg-ink-50 px-2.5 py-1 text-xs font-semibold text-ink-700">
                       {tech}
                     </span>
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.sdgTags.map((sdg) => (
-                    <SdgChip key={`${project.id}-${sdg}`} sdg={sdg} />
                   ))}
                 </div>
 

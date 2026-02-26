@@ -7,7 +7,6 @@ import Button from '@/components/ui/Button';
 import StatCard from '@/components/panels/StatCard';
 import LoadingState from '@/components/common/LoadingState';
 import ErrorState from '@/components/common/ErrorState';
-import SdgChip from '@/components/vallox/SdgChip';
 import { useAppAuth } from '@/lib/useAppAuth';
 import type { Application, Opportunity, OrganisationProfile } from '@/models/vallox';
 import { getApplicationsByOrg } from '@/services/vallox/applicationService';
@@ -103,11 +102,6 @@ export default function OrganizationDashboardPage() {
           <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
             <p className="text-lg font-semibold text-slate-900">{profile.orgName}</p>
             <p className="mt-1 text-sm text-slate-600">{profile.description}</p>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {profile.sdgFocus.map((sdg) => (
-                <SdgChip key={`org-sdg-${sdg}`} sdg={sdg} />
-              ))}
-            </div>
           </div>
         ) : (
           <p className="text-sm text-slate-600">Organization profile missing. Complete onboarding first.</p>

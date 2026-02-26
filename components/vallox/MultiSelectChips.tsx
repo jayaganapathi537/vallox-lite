@@ -18,6 +18,10 @@ export default function MultiSelectChips<T extends string | number>({
   values,
   onChange
 }: MultiSelectChipsProps<T>) {
+  if (/sdg/i.test(label)) {
+    return null;
+  }
+
   const toggle = (value: T) => {
     if (values.includes(value)) {
       onChange(values.filter((item) => item !== value));

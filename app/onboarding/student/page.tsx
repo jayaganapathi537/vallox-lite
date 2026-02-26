@@ -9,9 +9,8 @@ import Textarea from '@/components/ui/Textarea';
 import RoleGate from '@/components/auth/RoleGate';
 import MultiSelectChips from '@/components/vallox/MultiSelectChips';
 import { COMMON_SKILLS } from '@/lib/options';
-import { SDG_META, SUPPORTED_SDGS } from '@/lib/sdg';
 import { useAppAuth } from '@/lib/useAppAuth';
-import { upsertStudentProfile, getStudentProfile } from '@/services/vallox/studentService';
+import { getStudentProfile, upsertStudentProfile } from '@/services/vallox/studentService';
 import { updateUser } from '@/services/vallox/userService';
 
 export default function StudentOnboardingPage() {
@@ -29,15 +28,10 @@ function StudentOnboardingContent() {
   const [headline, setHeadline] = useState('');
   const [bio, setBio] = useState('');
   const [skills, setSkills] = useState<string[]>([]);
-  const [sdgInterests, setSdgInterests] = useState<number[]>([]);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
   const skillOptions = useMemo(() => COMMON_SKILLS.map((skill) => ({ value: skill, label: skill })), []);
-  const sdgOptions = useMemo(
-    () => SUPPORTED_SDGS.map((sdg) => ({ value: sdg, label: `SDG ${sdg} - ${SDG_META[sdg].short}` })),
-    []
-  );
 
   useEffect(() => {
     if (!appUser) return;
@@ -48,7 +42,6 @@ function StudentOnboardingContent() {
         setHeadline(profile.headline);
         setBio(profile.bio);
         setSkills(profile.skills);
-        setSdgInterests(profile.sdgInterests);
       })
       .catch(() => {
         setError('Unable to load your existing profile. You can still continue.');
@@ -57,7 +50,6 @@ function StudentOnboardingContent() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     if (!appUser) return;
 
     setSaving(true);
@@ -68,7 +60,7 @@ function StudentOnboardingContent() {
         headline,
         bio,
         skills,
-        sdgInterests
+        sdgInterests: []
       });
 
       await updateUser(appUser.id, { onboardingComplete: true });
@@ -86,7 +78,7 @@ function StudentOnboardingContent() {
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
         <h1 className="font-display text-3xl font-semibold text-ink-900">Student Onboarding</h1>
-        <p className="mt-2 text-ink-600">Set your skills and SDG interests to unlock recommendations.</p>
+        <p className="mt-2 text-ink-600">Set your skills to unlock recommendations.</p>
       </div>
 
       <Card>
@@ -108,11 +100,10 @@ function StudentOnboardingContent() {
           />
 
           <MultiSelectChips label="Skills" options={skillOptions} values={skills} onChange={setSkills} />
-          <MultiSelectChips label="SDG Interests" options={sdgOptions} values={sdgInterests} onChange={setSdgInterests} />
 
-          {error && <p className="text-sm text-sunrise-700">{error}</p>}
+          {error && <p className="text-sm text-red-600">{error}</p>}
 
-          <Button type="submit" disabled={saving || !skills.length || !sdgInterests.length}>
+          <Button type="submit" disabled={saving || !skills.length}>
             {saving ? 'Saving...' : 'Complete onboarding'}
           </Button>
         </form>

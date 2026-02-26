@@ -6,7 +6,6 @@ import Input from '@/components/ui/Input';
 import Textarea from '@/components/ui/Textarea';
 import MultiSelectChips from '@/components/vallox/MultiSelectChips';
 import { COMMON_SKILLS, OPPORTUNITY_TYPES } from '@/lib/options';
-import { SDG_META, SUPPORTED_SDGS } from '@/lib/sdg';
 import type { OpportunityStatus, OpportunityType } from '@/models/vallox';
 
 export interface OpportunityFormValues {
@@ -43,7 +42,6 @@ export default function OpportunityForm({ initialValues, submitLabel, onSubmit }
   const [title, setTitle] = useState(values.title);
   const [description, setDescription] = useState(values.description);
   const [requiredSkills, setRequiredSkills] = useState<string[]>(values.requiredSkills);
-  const [sdgTags, setSdgTags] = useState<number[]>(values.sdgTags);
   const [type, setType] = useState<OpportunityType>(values.type);
   const [location, setLocation] = useState(values.location);
   const [isRemote, setIsRemote] = useState(values.isRemote);
@@ -52,10 +50,6 @@ export default function OpportunityForm({ initialValues, submitLabel, onSubmit }
   const [error, setError] = useState('');
 
   const skillOptions = useMemo(() => COMMON_SKILLS.map((skill) => ({ label: skill, value: skill })), []);
-  const sdgOptions = useMemo(
-    () => SUPPORTED_SDGS.map((sdg) => ({ value: sdg, label: `SDG ${sdg} - ${SDG_META[sdg].short}` })),
-    []
-  );
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -67,7 +61,7 @@ export default function OpportunityForm({ initialValues, submitLabel, onSubmit }
         title,
         description,
         requiredSkills,
-        sdgTags,
+        sdgTags: values.sdgTags ?? [],
         type,
         location,
         isRemote,
@@ -150,11 +144,10 @@ export default function OpportunityForm({ initialValues, submitLabel, onSubmit }
         values={requiredSkills}
         onChange={setRequiredSkills}
       />
-      <MultiSelectChips label="SDG Tags" options={sdgOptions} values={sdgTags} onChange={setSdgTags} />
 
-      {error && <p className="text-sm text-sunrise-700">{error}</p>}
+      {error && <p className="text-sm text-red-600">{error}</p>}
 
-      <Button type="submit" disabled={submitting || !requiredSkills.length || !sdgTags.length}>
+      <Button type="submit" disabled={submitting || !requiredSkills.length}>
         {submitting ? 'Saving...' : submitLabel}
       </Button>
     </form>

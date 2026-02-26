@@ -8,7 +8,6 @@ import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import LoadingState from '@/components/common/LoadingState';
 import ErrorState from '@/components/common/ErrorState';
-import SdgChip from '@/components/vallox/SdgChip';
 import { useAppAuth } from '@/lib/useAppAuth';
 import { rankStudentsForOpportunity } from '@/lib/matching';
 import type { Application, Opportunity, StudentMatch } from '@/models/vallox';
@@ -106,12 +105,7 @@ function OpportunityMatchesContent() {
     <div className="space-y-6">
       <Card className="space-y-3">
         <h1 className="text-2xl font-semibold text-ink-900">Matches for: {opportunity.title}</h1>
-        <p className="text-ink-600">Ranking is deterministic: 70% skills overlap + 30% SDG overlap.</p>
-        <div className="flex flex-wrap gap-2">
-          {opportunity.sdgTags.map((sdg) => (
-            <SdgChip key={`match-header-${sdg}`} sdg={sdg} />
-          ))}
-        </div>
+        <p className="text-ink-600">Ranking is deterministic based on skill overlap.</p>
       </Card>
 
       {error && <ErrorState message={error} />}
@@ -140,7 +134,6 @@ function OpportunityMatchesContent() {
 
                 <div className="grid gap-2 text-sm text-ink-600 md:grid-cols-2">
                   <p>Skill overlap: {match.skillOverlap.join(', ') || 'None'}</p>
-                  <p>SDG overlap: {match.sdgOverlap.join(', ') || 'None'}</p>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-2">

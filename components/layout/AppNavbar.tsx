@@ -47,8 +47,7 @@ export default function AppNavbar() {
     <header className="sticky top-0 z-40 border-b border-white/10 bg-gradient-to-r from-ink-900 via-slate-900 to-ink-900 backdrop-blur">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-6">
-          <Link href="/" className="flex items-center gap-2 text-lg font-semibold text-white">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 font-display text-sm">V</span>
+          <Link href="/" className="text-2xl font-semibold tracking-tight text-white" aria-label="Vallox Home">
             Vallox
           </Link>
           <nav className="hidden items-center gap-1 md:flex">

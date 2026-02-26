@@ -7,7 +7,6 @@ import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import LoadingState from '@/components/common/LoadingState';
 import ErrorState from '@/components/common/ErrorState';
-import SdgChip from '@/components/vallox/SdgChip';
 import { useAppAuth } from '@/lib/useAppAuth';
 import { calculateMatch } from '@/lib/matching';
 import type { Application, Opportunity, OrganisationProfile, StudentProfile } from '@/models/vallox';
@@ -124,15 +123,6 @@ export default function OpportunityDetailPage() {
           </div>
         </div>
 
-        <div>
-          <p className="text-sm font-semibold text-ink-700">SDG Tags</p>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {opportunity.sdgTags.map((sdg) => (
-              <SdgChip key={`${opportunity.id}-${sdg}`} sdg={sdg} />
-            ))}
-          </div>
-        </div>
-
         {orgProfile ? (
           <div className="rounded-xl border border-ink-100 bg-ink-50 p-4 text-sm text-ink-700">
             <p className="font-semibold text-ink-900">About {orgProfile.orgName}</p>
@@ -148,9 +138,7 @@ export default function OpportunityDetailPage() {
         {match ? (
           <div className="rounded-xl border border-sea-100 bg-sea-50 p-4 text-sm text-sea-800">
             <p className="font-semibold">Your match score: {match.matchScore}%</p>
-            <p>
-              Skills overlap: {match.skillScore} | SDG overlap: {match.sdgScore}
-            </p>
+            <p>Skills overlap: {match.skillScore}</p>
           </div>
         ) : null}
 

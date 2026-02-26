@@ -6,7 +6,6 @@ import Input from '@/components/ui/Input';
 import Textarea from '@/components/ui/Textarea';
 import MultiSelectChips from '@/components/vallox/MultiSelectChips';
 import { COMMON_SKILLS } from '@/lib/options';
-import { SDG_META, SUPPORTED_SDGS } from '@/lib/sdg';
 import type { ProjectLinks } from '@/models/vallox';
 
 export interface ProjectFormValues {
@@ -37,7 +36,6 @@ export default function ProjectForm({ initialValues, onSubmit, submitLabel }: Pr
   const [title, setTitle] = useState(values.title);
   const [description, setDescription] = useState(values.description);
   const [techStack, setTechStack] = useState<string[]>(values.techStack);
-  const [sdgTags, setSdgTags] = useState<number[]>(values.sdgTags);
   const [github, setGithub] = useState(values.links.github ?? '');
   const [demo, setDemo] = useState(values.links.demo ?? '');
   const [video, setVideo] = useState(values.links.video ?? '');
@@ -45,10 +43,6 @@ export default function ProjectForm({ initialValues, onSubmit, submitLabel }: Pr
   const [error, setError] = useState('');
 
   const skillOptions = useMemo(() => COMMON_SKILLS.map((skill) => ({ label: skill, value: skill })), []);
-  const sdgOptions = useMemo(
-    () => SUPPORTED_SDGS.map((sdg) => ({ label: `SDG ${sdg} - ${SDG_META[sdg].short}`, value: sdg })),
-    []
-  );
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -60,7 +54,7 @@ export default function ProjectForm({ initialValues, onSubmit, submitLabel }: Pr
         title,
         description,
         techStack,
-        sdgTags,
+        sdgTags: values.sdgTags ?? [],
         links: {
           github: github || undefined,
           demo: demo || undefined,
@@ -86,15 +80,14 @@ export default function ProjectForm({ initialValues, onSubmit, submitLabel }: Pr
       />
 
       <MultiSelectChips label="Tech Stack" options={skillOptions} values={techStack} onChange={setTechStack} />
-      <MultiSelectChips label="SDG Tags" options={sdgOptions} values={sdgTags} onChange={setSdgTags} />
 
       <Input label="GitHub URL" placeholder="https://github.com/..." value={github} onChange={(event) => setGithub(event.target.value)} />
       <Input label="Demo URL" placeholder="https://..." value={demo} onChange={(event) => setDemo(event.target.value)} />
       <Input label="Video URL" placeholder="https://..." value={video} onChange={(event) => setVideo(event.target.value)} />
 
-      {error && <p className="text-sm text-sunrise-700">{error}</p>}
+      {error && <p className="text-sm text-red-600">{error}</p>}
 
-      <Button type="submit" disabled={submitting || !techStack.length || !sdgTags.length}>
+      <Button type="submit" disabled={submitting || !techStack.length}>
         {submitting ? 'Saving...' : submitLabel}
       </Button>
     </form>

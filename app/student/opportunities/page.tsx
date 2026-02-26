@@ -153,7 +153,7 @@ export default function StudentOpportunitiesPage() {
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-700">Recommended for You</p>
             <h2 className="text-xl font-semibold text-slate-900">Smart Match Overview</h2>
-            <p className="text-sm text-slate-600">Live ranking based on your skills and SDG interests.</p>
+            <p className="text-sm text-slate-600">Live ranking based on your skills.</p>
           </div>
           <span className="rounded-full border border-brand-200 bg-white px-3 py-1 text-xs font-semibold text-brand-700">
             Total Matches: {filteredMatches.length}
@@ -245,7 +245,7 @@ export default function StudentOpportunitiesPage() {
                 </div>
 
                 <p className="text-xs text-slate-500">
-                  Why this matches: {match.skillScore} skill overlaps and {match.sdgScore} SDG overlaps.
+                  Why this matches: {match.skillScore} skill overlaps.
                 </p>
 
                 <div className="flex flex-wrap gap-2">

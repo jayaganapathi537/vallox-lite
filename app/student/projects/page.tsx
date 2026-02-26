@@ -35,9 +35,8 @@ function projectScore(project: Project) {
     project.techStack.length > 1,
     Boolean(project.links.github),
     Boolean(project.links.demo),
-    project.sdgTags.length > 0
-  ].filter(Boolean).length;
-  return Math.round((parts / 6) * 100);
+    ].filter(Boolean).length;
+  return Math.round((parts / 5) * 100);
 }
 
 export default function StudentProjectsPage() {
@@ -184,7 +183,6 @@ export default function StudentProjectsPage() {
                   <p>Completeness Score: {score}%</p>
                   <p>GitHub: {project.links.github ? 'Attached' : 'Missing'}</p>
                   <p>Demo: {project.links.demo ? 'Attached' : 'Missing'}</p>
-                  <p>SDG Tags: {project.sdgTags.length}</p>
                 </div>
 
                 <div className="flex flex-wrap gap-2">

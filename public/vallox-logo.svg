@@ -1,0 +1,9 @@
+<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="V logo">
+  <defs>
+    <linearGradient id="g1" x1="7" y1="6" x2="30" y2="37" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8CB4FF"/>
+      <stop offset="1" stop-color="#1769FF"/>
+    </linearGradient>
+  </defs>
+  <path d="M8 7L22 37L36 7" stroke="url(#g1)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

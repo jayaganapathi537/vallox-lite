@@ -6,7 +6,6 @@ import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import LoadingState from '@/components/common/LoadingState';
 import ErrorState from '@/components/common/ErrorState';
-import SdgChip from '@/components/vallox/SdgChip';
 import { useAppAuth } from '@/lib/useAppAuth';
 import type { Project, StudentProfile } from '@/models/vallox';
 import { getProjectsByStudentId } from '@/services/vallox/projectService';
@@ -110,11 +109,6 @@ export default function StudentPublicProfilePage() {
                 <span key={skill} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700">
                   {skill}
                 </span>
-              ))}
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {profile.sdgInterests.map((sdg) => (
-                <SdgChip key={`profile-sdg-${sdg}`} sdg={sdg} />
               ))}
             </div>
           </>

@@ -101,7 +101,7 @@ function OpportunitiesBrowseContent() {
     <div className="space-y-6">
       <Card className="space-y-4">
         <h1 className="text-2xl font-semibold text-ink-900">Browse Opportunities</h1>
-        <p className="text-ink-600">Filter open opportunities by skills, SDGs, type, and remote preference.</p>
+        <p className="text-ink-600">Filter open opportunities by skills, type, and remote preference.</p>
 
         <MultiSelectChips
           label="Skills"

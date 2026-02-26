@@ -1,7 +1,7 @@
 import type { Opportunity, OpportunityMatch, StudentMatch, StudentProfile, BaseUser } from '@/models/vallox';
 
-const wSkills = 0.7;
-const wSDG = 0.3;
+const wSkills = 1;
+const wSDG = 0;
 
 function normalize(text: string) {
   return text.trim().toLowerCase();
