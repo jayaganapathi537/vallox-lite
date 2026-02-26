@@ -91,7 +91,7 @@ export default function StudentPublicProfilePage() {
             </Button>
           </Link>
           <Link href="/onboarding/student">
-            <Button size="sm" className="bg-white text-brand-700 hover:bg-slate-100">
+            <Button size="sm" className="border-white/30 bg-white/10 text-white hover:bg-white/20">
               Edit Profile
             </Button>
           </Link>
