@@ -80,7 +80,7 @@ export default function AppNavbar() {
                 </Button>
               </Link>
               <Link href="/auth/signup">
-                <Button variant="outline" size="sm" className="border-white/25 bg-transparent text-white hover:bg-white/10">
+                <Button variant="outline" size="sm" className="border-white/35 bg-white text-slate-900 hover:bg-slate-100">
                   Sign Up
                 </Button>
               </Link>

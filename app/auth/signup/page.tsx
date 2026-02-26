@@ -7,7 +7,7 @@ import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import { useAppAuth } from '@/lib/useAppAuth';
-import { dashboardPathForRole } from '@/lib/routes';
+import { dashboardPathForRole, onboardingPathForRole } from '@/lib/routes';
 import type { UserRole } from '@/models/vallox';
 import { loginWithGoogle, registerWithEmail } from '@/services/vallox/authService';
 import { savePreferredRole } from '@/lib/authStorage';
@@ -32,7 +32,7 @@ export default function SignUpPage() {
 
   useEffect(() => {
     if (loading || !appUser) return;
-    router.replace(dashboardPathForRole(appUser.role));
+    router.replace(appUser.onboardingComplete ? dashboardPathForRole(appUser.role) : onboardingPathForRole(appUser.role));
   }, [appUser, loading, router]);
 
   const handleSignUp = async (event: FormEvent<HTMLFormElement>) => {
@@ -52,7 +52,7 @@ export default function SignUpPage() {
       if (phone.trim()) {
         // Reserved for future profile contact enrichment.
       }
-      router.replace(dashboardPathForRole(result.appUser.role));
+      router.replace(result.appUser.onboardingComplete ? dashboardPathForRole(result.appUser.role) : onboardingPathForRole(result.appUser.role));
     } catch (signupError) {
       const message = signupError instanceof Error ? signupError.message : 'Unable to create account.';
       setError(message);
@@ -68,7 +68,7 @@ export default function SignUpPage() {
     try {
       savePreferredRole(role);
       const result = await loginWithGoogle(role);
-      router.replace(dashboardPathForRole(result.appUser.role));
+      router.replace(result.appUser.onboardingComplete ? dashboardPathForRole(result.appUser.role) : onboardingPathForRole(result.appUser.role));
     } catch (googleError) {
       const message = googleError instanceof Error ? googleError.message : 'Google sign-in failed.';
       setError(message);

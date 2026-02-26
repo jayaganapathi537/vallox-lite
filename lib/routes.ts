@@ -7,5 +7,7 @@ export function dashboardPathForRole(role: UserRole) {
 }
 
 export function onboardingPathForRole(role: UserRole) {
-  return dashboardPathForRole(role);
+  if (role === 'student') return '/onboarding/student';
+  if (role === 'organisation') return '/onboarding/organisation';
+  return '/admin/dashboard';
 }
