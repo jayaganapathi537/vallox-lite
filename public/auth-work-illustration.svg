@@ -1,0 +1,40 @@
+<svg width="880" height="620" viewBox="0 0 880 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="40" y1="40" x2="840" y2="580" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD8B8"/>
+      <stop offset="0.55" stop-color="#FF7B4B"/>
+      <stop offset="1" stop-color="#0B1F3A"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.78"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="880" height="620" rx="36" fill="url(#bg)"/>
+
+  <circle cx="710" cy="120" r="92" fill="white" fill-opacity="0.14"/>
+  <circle cx="120" cy="530" r="120" fill="white" fill-opacity="0.12"/>
+
+  <rect x="100" y="130" width="680" height="360" rx="28" fill="url(#card)"/>
+  <rect x="142" y="176" width="300" height="18" rx="9" fill="#0B1F3A" fill-opacity="0.16"/>
+  <rect x="142" y="210" width="248" height="12" rx="6" fill="#0B1F3A" fill-opacity="0.14"/>
+
+  <rect x="142" y="270" width="250" height="180" rx="18" fill="#0B1F3A" fill-opacity="0.07"/>
+  <rect x="420" y="270" width="318" height="72" rx="18" fill="#0B1F3A" fill-opacity="0.08"/>
+  <rect x="420" y="356" width="318" height="94" rx="18" fill="#0B1F3A" fill-opacity="0.08"/>
+
+  <circle cx="205" cy="332" r="26" fill="#FF7B4B"/>
+  <rect x="242" y="318" width="118" height="12" rx="6" fill="#0B1F3A" fill-opacity="0.16"/>
+  <rect x="242" y="339" width="82" height="10" rx="5" fill="#0B1F3A" fill-opacity="0.12"/>
+
+  <rect x="468" y="292" width="116" height="12" rx="6" fill="#0B1F3A" fill-opacity="0.18"/>
+  <rect x="468" y="314" width="220" height="10" rx="5" fill="#0B1F3A" fill-opacity="0.12"/>
+
+  <rect x="468" y="378" width="150" height="12" rx="6" fill="#0B1F3A" fill-opacity="0.18"/>
+  <rect x="468" y="400" width="184" height="10" rx="5" fill="#0B1F3A" fill-opacity="0.12"/>
+  <rect x="468" y="418" width="138" height="10" rx="5" fill="#0B1F3A" fill-opacity="0.12"/>
+
+  <rect x="650" y="392" width="64" height="36" rx="10" fill="#FF7B4B"/>
+  <path d="M675 410L685 420L705 400" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
